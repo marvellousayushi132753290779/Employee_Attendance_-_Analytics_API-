@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HROne Enterprise | Attendance & Workforce Analytics Suite</title>
+  <meta name="description" content="Enterprise Workforce Attendance Tracking, Shift Scheduling, Race-Safe Punch Terminal, and High-Performance MongoDB Native Analytics Platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <!-- ===================================================================== -->
+  <!-- 1. PROFESSIONAL ENTERPRISE LOGIN GATEWAY                              -->
+  <!-- ===================================================================== -->
+  <div id="view-login-screen" class="login-wrapper">
+    <div class="login-card">
+      <!-- Brand Header -->
+      <div class="login-brand">
+        <div class="login-logo-container">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <circle cx="12" cy="11" r="3"></circle>
+            <path d="M12 11v-2"></path>
+            <path d="M12 11l1.5 1.5"></path>
+          </svg>
+        </div>
+        <div class="login-brand-meta">
+          <h1 class="login-brand-title">HROne <span class="brand-tag">ENTERPRISE</span></h1>
+          <p class="login-brand-subtitle">Attendance &amp; Workforce Analytics Platform</p>
+        </div>
+      </div>
+
+      <!-- Role Selector Tabs -->
+      <div class="login-role-tabs">
+        <button type="button" class="login-role-tab active" id="tab-login-emp" data-role="employee">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Employee Self-Service
+        </button>
+        <button type="button" class="login-role-tab" id="tab-login-admin" data-role="admin">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          HR / People Operations
+        </button>
+      </div>
+
+      <!-- Official Corporate Login Form -->
+      <form id="form-login" class="login-form">
+        <div class="form-group">
+          <label for="login-username" class="field-label" id="label-login-id">Corporate Email or Employee ID</label>
+          <div class="input-icon-wrap">
+            <svg class="input-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <input type="text" id="login-username" class="form-input form-input-with-icon" placeholder="name@company.com or EMP ID" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-row">
+            <label for="login-password" class="field-label">Password / Security Key</label>
+            <a href="javascript:void(0)" class="form-hint-link" onclick="showToast('Password Assistance', 'Please contact your corporate IT helpdesk or HR administrator to reset your credentials.', 'info')">Forgot Password?</a>
+          </div>
+          <div class="input-icon-wrap">
+            <svg class="input-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <input type="password" id="login-password" class="form-input form-input-with-icon" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <div class="login-options-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="login-remember" checked>
+            <span>Remember this corporate device</span>
+          </label>
+          <span class="timezone-badge">IST (UTC+05:30)</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-login">
+          <span>Sign In to Portal</span>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <!-- Divider -->
+        <div class="login-divider">
+          <span>or continue with single sign-on</span>
+        </div>
+
+        <!-- Corporate SSO Action -->
+        <button type="button" class="btn btn-secondary btn-block" id="btn-sso-login">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          <span>Sign In with Corporate SSO (Okta / SAML 2.0)</span>
+        </button>
+      </form>
+
+      <!-- Official Security & Regulatory Notice -->
+      <div class="official-security-notice">
+        <div class="security-notice-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="security-notice-text">
+          <strong>Authorized Corporate Access Only</strong>
+          <span>Access is restricted to verified employees. All attendance timestamps and regularizations are cryptographically logged and audited.</span>
+        </div>
+      </div>
+
+      <!-- Compliance Trust Footer -->
+      <div class="login-footer">
+        <span class="compliance-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          256-Bit TLS Secured
+        </span>
+        <span class="compliance-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          IST Time Standard (UTC+05:30)
+        </span>
+        <span class="compliance-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          ISO 27001 &bull; SOC 2
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. AUTHENTICATED APPLICATION PORTAL                                   -->
+  <!-- ===================================================================== -->
+  <div id="app-portal" class="portal-wrapper hidden">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-container">
+        <!-- Brand Title -->
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <circle cx="12" cy="11" r="3"></circle>
+              <path d="M12 11v-2"></path>
+              <path d="M12 11l1.5 1.5"></path>
+            </svg>
+          </div>
+          <div class="brand-text-block">
+            <div class="brand-title">HROne <span class="brand-sub">ENTERPRISE</span></div>
+            <div class="brand-tagline">Workforce Attendance &amp; Real-Time Analytics</div>
+          </div>
+        </div>
+
+        <!-- Live Clock Pill -->
+        <div class="header-center">
+          <div class="live-clock-pill">
+            <span class="live-indicator"></span>
+            <span id="live-ist-clock" class="mono-text">--:--:-- IST</span>
+            <span class="clock-label">IST (UTC+05:30)</span>
+          </div>
+        </div>
+
+        <!-- User Profile & Actions -->
+        <div class="header-actions">
+          <div id="api-status-badge" class="status-pill status-healthy" title="FastAPI and MongoDB active">
+            <span class="pulse-dot"></span>
+            <span id="api-status-text">Database Connected</span>
+          </div>
+
+          <!-- User Profile Widget -->
+          <div class="user-profile-widget" id="user-profile-widget">
+            <div class="user-avatar" id="header-user-avatar">HR</div>
+            <div class="user-info-text">
+              <span class="user-name" id="header-user-name">HR Administrator</span>
+              <span class="user-role-badge" id="header-user-role">Administrator</span>
+            </div>
+            <button class="btn btn-secondary btn-sm btn-logout" id="btn-logout" title="Sign out of portal">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              Sign Out
+            </button>
+          </div>
+
+          <button id="btn-seed-data" class="btn btn-secondary btn-sm" title="Reload clean sample dataset from sample_data/">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            Reset Seed Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs Bar -->
+      <nav class="nav-bar">
+        <div class="nav-container">
+          <!-- Admin View Tabs -->
+          <button class="nav-tab active" data-target="dashboard" id="tab-dashboard">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9"></rect>
+              <rect x="14" y="3" width="7" height="5"></rect>
+              <rect x="14" y="12" width="7" height="9"></rect>
+              <rect x="3" y="16" width="7" height="5"></rect>
+            </svg>
+            Analytics &amp; KPIs
+          </button>
+          <button class="nav-tab" data-target="kiosk" id="tab-kiosk">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="tab-kiosk-text">Punch Clock Terminal</span>
+          </button>
+          <button class="nav-tab" data-target="attendance" id="tab-attendance">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span id="tab-attendance-text">Attendance Register &amp; Audit</span>
+          </button>
+          <button class="nav-tab" data-target="employees" id="tab-employees">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Employee Directory
+          </button>
+          <button class="nav-tab" data-target="diagnostics" id="tab-diagnostics">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            System Diagnostics (Explain)
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Employee Welcome Banner (Shows when logged in as Employee) -->
+      <div id="emp-welcome-banner" class="emp-banner hidden">
+        <div class="emp-banner-content">
+          <div class="emp-banner-avatar" id="banner-emp-avatar">AR</div>
+          <div class="emp-banner-info">
+            <h2 class="emp-banner-name">Welcome, <span id="banner-emp-name">Asha Rao</span>!</h2>
+            <p class="emp-banner-sub">
+              Code: <strong class="mono-text text-cyan" id="banner-emp-code">EMP0001</strong> &bull;
+              Department: <span id="banner-emp-dept">Engineering</span> &bull;
+              Shift: <span class="mono-text" id="banner-emp-shift">09:30 - 18:30 IST</span>
+            </p>
+          </div>
+        </div>
+        <div class="emp-banner-actions">
+          <button class="btn btn-primary btn-sm" onclick="switchTab('kiosk')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Punch In / Out
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="openSelfMonthlyModal()">
+            My Monthly Breakdown
+          </button>
+        </div>
+      </div>
+
+      <!-- =============================================================== -->
+      <!-- VIEW 1: DASHBOARD & ANALYTICS                                   -->
+      <!-- =============================================================== -->
+      <section id="view-dashboard" class="content-view active">
+        <!-- Toolbar Filters -->
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title">Executive Attendance Analytics</h2>
+            <p class="view-subtitle">Powered by MongoDB native aggregation pipelines ($densify, $setWindowFields, R1-R10 rules)</p>
+          </div>
+          <div class="filter-group">
+            <div class="input-wrapper">
+              <label for="dash-month-input" class="field-label">Period (Month)</label>
+              <input type="month" id="dash-month-input" value="2026-07" class="form-input">
+            </div>
+            <div class="input-wrapper">
+              <label for="dash-dept-filter" class="field-label">Department</label>
+              <select id="dash-dept-filter" class="form-input">
+                <option value="">All Departments</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Sales">Sales</option>
+                <option value="Support">Support</option>
+              </select>
+            </div>
+            <button id="btn-refresh-dashboard" class="btn btn-primary btn-auto-height">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">Active Headcount (R9)</span>
+              <span class="kpi-value" id="kpi-headcount">--</span>
+              <span class="kpi-foot">Joined on or before period end</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-emerald">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">Total Present Days (R6)</span>
+              <span class="kpi-value" id="kpi-present-days">--</span>
+              <span class="kpi-foot">Mon-Fri workdays (0.5 for half-days)</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-violet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">Avg Work Hours (R4)</span>
+              <span class="kpi-value" id="kpi-avg-workhours">-- <small class="text-muted">hrs</small></span>
+              <span class="kpi-foot">Calculated half-up (R8)</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-rose">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">Late Arrivals (R2)</span>
+              <span class="kpi-value" id="kpi-late-count">--</span>
+              <span class="kpi-foot" id="kpi-late-minutes">0 total late minutes</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">Leaves &amp; Off Days</span>
+              <span class="kpi-value" id="kpi-leaves">--</span>
+              <span class="kpi-foot">Approved leaves recorded</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap kpi-cyan">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div class="kpi-meta">
+              <span class="kpi-label">On-Duty Incidents</span>
+              <span class="kpi-value" id="kpi-onduty">--</span>
+              <span class="kpi-foot">Field assignments counted as present</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Split Grid -->
+        <div class="analytics-layout">
+          <!-- Left: Department Breakdown & Leaderboard -->
+          <div class="analytics-col-left">
+            <div class="panel-card">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <h3 class="panel-title">Department Attendance Breakdown</h3>
+                  <span class="badge badge-subtle">GET /analytics/departments/summary</span>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-dept-summary">
+                  <thead>
+                    <tr>
+                      <th>Department</th>
+                      <th>Headcount</th>
+                      <th>Present Days</th>
+                      <th>Avg Hours</th>
+                      <th>Late Incidents</th>
+                      <th>Late Mins</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-dept-summary">
+                    <tr><td colspan="6" class="text-center text-muted py-4">Loading department analytics...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel-card mt-4">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <h3 class="panel-title">Tardiness &amp; Late Leaderboard</h3>
+                  <span class="badge badge-subtle">GET /analytics/leaderboard/late</span>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="table-late-leaderboard">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Employee</th>
+                      <th>Department</th>
+                      <th>Late Count</th>
+                      <th>Total Late Mins</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-late-leaderboard">
+                    <tr><td colspan="5" class="text-center text-muted py-4">No late arrival violations found.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Department Trend Chart -->
+          <div class="analytics-col-right">
+            <div class="panel-card">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <h3 class="panel-title">Daily Attendance Trend &amp; Moving Average</h3>
+                  <span class="badge badge-subtle">GET /analytics/departments/{dept}/trend</span>
+                </div>
+              </div>
+              <div class="trend-controls">
+                <div class="input-wrapper">
+                  <label for="trend-dept-select" class="field-label">Department</label>
+                  <select id="trend-dept-select" class="form-input form-input-sm">
+                    <option value="Engineering">Engineering</option>
+                    <option value="Sales" selected>Sales</option>
+                    <option value="Support">Support</option>
+                  </select>
+                </div>
+                <div class="input-wrapper">
+                  <label for="trend-date-from" class="field-label">From</label>
+                  <input type="date" id="trend-date-from" value="2026-07-01" class="form-input form-input-sm">
+                </div>
+                <div class="input-wrapper">
+                  <label for="trend-date-to" class="field-label">To</label>
+                  <input type="date" id="trend-date-to" value="2026-07-15" class="form-input form-input-sm">
+                </div>
+                <button id="btn-fetch-trend" class="btn btn-secondary btn-sm btn-auto-height">Load Trend</button>
+              </div>
+
+              <!-- SVG Chart -->
+              <div class="chart-container" id="trend-chart-container">
+                <div class="chart-legend">
+                  <span class="legend-item"><span class="legend-color legend-bar"></span> Present Count</span>
+                  <span class="legend-item"><span class="legend-color legend-line"></span> 7-Day Moving Avg ($setWindowFields)</span>
+                </div>
+                <div id="trend-svg-wrapper" class="svg-wrapper"></div>
+              </div>
+
+              <!-- Trend Detailed Table -->
+              <div class="table-responsive mt-3" style="max-height: 280px; overflow-y: auto;">
+                <table class="data-table data-table-sm" id="table-trend-details">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Headcount</th>
+                      <th>Present</th>
+                      <th>Late</th>
+                      <th>Rate (%)</th>
+                      <th>7d Mov. Avg</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-trend-details">
+                    <tr><td colspan="7" class="text-center text-muted">Select department and click Load Trend.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================== -->
+      <!-- VIEW 2: PUNCH CLOCK TERMINAL                                    -->
+      <!-- =============================================================== -->
+      <section id="view-kiosk" class="content-view">
+        <div class="kiosk-hero">
+          <div class="kiosk-clock-display">
+            <div class="clock-digits" id="kiosk-clock-digits">21:30:00</div>
+            <div class="clock-sub" id="kiosk-clock-sub">Monday, 06 July 2026 &bull; Indian Standard Time (IST)</div>
+          </div>
+          <p class="kiosk-notice">
+            <strong>Automated Shift Calculation Engine:</strong> Strict compound index <code>(emp_code, date)</code> guarantees exactly one punch-in per calendar day. Overtime computed after shift end (min 30m, R3).
+          </p>
+        </div>
+
+        <div class="kiosk-grid">
+          <!-- Punch In Terminal Card -->
+          <div class="panel-card punch-card">
+            <div class="panel-header border-bottom">
+              <div class="panel-title-wrap">
+                <span class="badge badge-emerald">STEP 1</span>
+                <h3 class="panel-title">Punch In Terminal</h3>
+              </div>
+              <span class="badge badge-subtle">POST /attendance/punch-in</span>
+            </div>
+
+            <form id="form-punch-in" class="punch-form">
+              <div class="form-group">
+                <label for="punch-in-emp" class="field-label">Employee Code / Name *</label>
+                <select id="punch-in-emp" class="form-input" required>
+                  <option value="">-- Choose Employee --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="field-label">Attendance Status Mode * (R6)</label>
+                <div class="status-options-grid">
+                  <label class="radio-card">
+                    <input type="radio" name="punch_in_status" value="PRESENT" checked>
+                    <span class="radio-card-content">
+                      <span class="radio-title">PRESENT</span>
+                      <span class="radio-sub">Worked on site</span>
+                    </span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="punch_in_status" value="WFH">
+                    <span class="radio-card-content">
+                      <span class="radio-title">WFH</span>
+                      <span class="radio-sub">Remote home work</span>
+                    </span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="punch_in_status" value="ON_DUTY">
+                    <span class="radio-card-content">
+                      <span class="radio-title">ON_DUTY</span>
+                      <span class="radio-sub">Field assignment</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Instant Mode Toggle -->
+              <div class="form-group">
+                <label class="field-label">Timestamp Source</label>
+                <div class="toggle-switch-wrap">
+                  <label class="switch-item">
+                    <input type="radio" name="punch_in_time_mode" value="now" checked id="punch-in-time-now">
+                    <span>Server Clock (Now)</span>
+                  </label>
+                  <label class="switch-item">
+                    <input type="radio" name="punch_in_time_mode" value="custom" id="punch-in-time-custom">
+                    <span>Simulate Instant (Custom Date/Time)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Custom datetime picker -->
+              <div id="custom-punch-in-box" class="form-group hidden">
+                <label for="custom-punch-in-dt" class="field-label">Custom Instant (Local Time -> Sent as Epoch MS)</label>
+                <input type="datetime-local" id="custom-punch-in-dt" class="form-input">
+                <span class="field-hint">Instants are truncated to whole seconds (Rule R1).</span>
+              </div>
+
+              <!-- Shift Grace & Late Preview -->
+              <div class="calc-preview-box" id="punch-in-preview">
+                <div class="preview-row">
+                  <span class="preview-label">Employee Shift:</span>
+                  <span class="preview-value mono-text" id="preview-shift-range">Select employee</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Grace Period Ends:</span>
+                  <span class="preview-value mono-text" id="preview-grace-deadline">--:--</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Late Status (R2):</span>
+                  <span class="preview-value" id="preview-late-status"><span class="badge badge-neutral">Pending</span></span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-punch-in">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 14 10"></polyline>
+                </svg>
+                Confirm Punch In
+              </button>
+            </form>
+          </div>
+
+          <!-- Punch Out Terminal Card -->
+          <div class="panel-card punch-card">
+            <div class="panel-header border-bottom">
+              <div class="panel-title-wrap">
+                <span class="badge badge-violet">STEP 2</span>
+                <h3 class="panel-title">Punch Out Terminal</h3>
+              </div>
+              <span class="badge badge-subtle">POST /attendance/punch-out</span>
+            </div>
+
+            <form id="form-punch-out" class="punch-form">
+              <div class="form-group">
+                <label for="punch-out-emp" class="field-label">Employee Code / Name *</label>
+                <select id="punch-out-emp" class="form-input" required>
+                  <option value="">-- Choose Employee --</option>
+                </select>
+              </div>
+
+              <!-- Instant Mode Toggle -->
+              <div class="form-group">
+                <label class="field-label">Timestamp Source</label>
+                <div class="toggle-switch-wrap">
+                  <label class="switch-item">
+                    <input type="radio" name="punch_out_time_mode" value="now" checked id="punch-out-time-now">
+                    <span>Server Clock (Now)</span>
+                  </label>
+                  <label class="switch-item">
+                    <input type="radio" name="punch_out_time_mode" value="custom" id="punch-out-time-custom">
+                    <span>Simulate Instant (Custom Date/Time)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Custom datetime picker -->
+              <div id="custom-punch-out-box" class="form-group hidden">
+                <label for="custom-punch-out-dt" class="field-label">Custom Instant (Local Time -> Sent as Epoch MS)</label>
+                <input type="datetime-local" id="custom-punch-out-dt" class="form-input">
+                <span class="field-hint">Whole seconds truncation applied automatically.</span>
+              </div>
+
+              <!-- Live Calculation Preview -->
+              <div class="calc-preview-box" id="punch-out-preview">
+                <div class="preview-row">
+                  <span class="preview-label">Punch In Record:</span>
+                  <span class="preview-value mono-text" id="preview-out-punchin">--</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Work Hours (R4):</span>
+                  <span class="preview-value mono-text" id="preview-out-hours">Calculated upon submission</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Overtime (R3):</span>
+                  <span class="preview-value mono-text" id="preview-out-overtime">Min 30 mins threshold</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Half-Day Rule (R5):</span>
+                  <span class="preview-value" id="preview-out-halfday"><span class="badge badge-neutral">Flagged if &lt; 4.5h</span></span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-secondary btn-block btn-lg" id="btn-submit-punch-out">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Confirm Punch Out
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================== -->
+      <!-- VIEW 3: ATTENDANCE LOGS & AUDIT REGULARIZATION                  -->
+      <!-- =============================================================== -->
+      <section id="view-attendance" class="content-view">
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title" id="att-view-title">Attendance Logs &amp; Audit Trail</h2>
+            <p class="view-subtitle">Filter by calendar range, audit trail verification, and optimistic lock regularizations</p>
+          </div>
+          <div class="filter-group">
+            <div class="input-wrapper">
+              <label for="att-filter-emp" class="field-label">Emp Code</label>
+              <input type="text" id="att-filter-emp" class="form-input form-input-sm" placeholder="e.g. EMP0001">
+            </div>
+            <div class="input-wrapper">
+              <label for="att-filter-from" class="field-label">Date From</label>
+              <input type="date" id="att-filter-from" value="2026-07-01" class="form-input form-input-sm">
+            </div>
+            <div class="input-wrapper">
+              <label for="att-filter-to" class="field-label">Date To</label>
+              <input type="date" id="att-filter-to" value="2026-07-31" class="form-input form-input-sm">
+            </div>
+            <div class="input-wrapper">
+              <label for="att-filter-status" class="field-label">Status</label>
+              <select id="att-filter-status" class="form-input form-input-sm">
+                <option value="">All Statuses</option>
+                <option value="PRESENT">PRESENT</option>
+                <option value="WFH">WFH</option>
+                <option value="ON_DUTY">ON_DUTY</option>
+                <option value="ABSENT">ABSENT</option>
+                <option value="LEAVE">LEAVE</option>
+              </select>
+            </div>
+            <button id="btn-filter-attendance" class="btn btn-primary btn-sm btn-auto-height">Apply Filter</button>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="table-responsive">
+            <table class="data-table" id="table-attendance">
+              <thead>
+                <tr>
+                  <th>Date (IST)</th>
+                  <th>Emp Code</th>
+                  <th>Status</th>
+                  <th>Punch In</th>
+                  <th>Punch Out</th>
+                  <th>Work Hours</th>
+                  <th>Late (mins)</th>
+                  <th>OT (mins)</th>
+                  <th>Audit History</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-attendance">
+                <tr><td colspan="10" class="text-center text-muted py-4">Loading attendance logs...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination controls -->
+          <div class="pagination-bar">
+            <div class="pagination-info" id="att-pagination-info">Showing records...</div>
+            <div class="pagination-btns">
+              <button id="btn-att-prev" class="btn btn-secondary btn-sm" disabled>Previous</button>
+              <span class="pagination-current" id="att-page-label">Page 1</span>
+              <button id="btn-att-next" class="btn btn-secondary btn-sm" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================== -->
+      <!-- VIEW 4: EMPLOYEES DIRECTORY                                     -->
+      <!-- =============================================================== -->
+      <section id="view-employees" class="content-view">
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title">Employee Roster</h2>
+            <p class="view-subtitle">Manage customer-generated employee codes, shift schedules, and join dates</p>
+          </div>
+          <div class="filter-group">
+            <input type="text" id="search-employees" class="form-input" placeholder="Search by name or EMP code...">
+            <select id="filter-emp-dept" class="form-input">
+              <option value="">All Departments</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Sales">Sales</option>
+              <option value="Support">Support</option>
+            </select>
+            <button id="btn-open-create-emp" class="btn btn-primary btn-auto-height">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add Employee
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="table-responsive">
+            <table class="data-table" id="table-employees">
+              <thead>
+                <tr>
+                  <th>Emp Code</th>
+                  <th>Employee Name</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Shift Schedule (IST)</th>
+                  <th>Joined Date</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-employees">
+                <tr><td colspan="7" class="text-center text-muted py-4">Loading employees directory...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination-bar">
+            <div class="pagination-info" id="emp-pagination-info">Showing 1-10 of 10</div>
+            <div class="pagination-btns">
+              <button id="btn-emp-prev" class="btn btn-secondary btn-sm" disabled>Previous</button>
+              <span class="pagination-current" id="emp-page-label">Page 1</span>
+              <button id="btn-emp-next" class="btn btn-secondary btn-sm" disabled>Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================== -->
+      <!-- VIEW 5: MONGO PERFORMANCE & EXPLAIN CONSOLE                     -->
+      <!-- =============================================================== -->
+      <section id="view-diagnostics" class="content-view">
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title">MongoDB Execution Diagnostics</h2>
+            <p class="view-subtitle">Verify Index Scans (IXSCAN), executionStats, and database performance</p>
+          </div>
+          <div class="filter-group">
+            <select id="explain-endpoint-select" class="form-input">
+              <option value="department_summary">department_summary</option>
+              <option value="late_leaderboard">late_leaderboard</option>
+              <option value="department_trend">department_trend</option>
+              <option value="employee_monthly">employee_monthly</option>
+              <option value="attendance_list">attendance_list</option>
+            </select>
+            <button id="btn-run-explain" class="btn btn-primary btn-auto-height">Execute Explain</button>
+          </div>
+        </div>
+
+        <div class="explain-layout">
+          <div class="kpi-grid mb-4">
+            <div class="kpi-card">
+              <span class="kpi-label">Queried Collection</span>
+              <span class="kpi-value mono-text" id="diag-collection">--</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Execution Time (ms)</span>
+              <span class="kpi-value text-emerald mono-text" id="diag-exec-time">--</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Index Scan Verified</span>
+              <span class="kpi-value text-cyan" id="diag-ixscan">--</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Status Code</span>
+              <span class="kpi-value text-emerald mono-text" id="diag-status">200 OK</span>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3 class="panel-title">Raw Explain Output (executionStats)</h3>
+              <span class="badge badge-subtle">MongoDB db.command('explain', ...)</span>
+            </div>
+            <pre class="json-code-box" id="json-explain-output">Select an endpoint and click 'Execute Explain' to inspect query plan.</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALS                                                                -->
+  <!-- ===================================================================== -->
+
+  <!-- MODAL 1: ADD EMPLOYEE -->
+  <div class="modal-overlay hidden" id="modal-create-emp">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Register New Employee</h3>
+        <button class="modal-close" id="btn-close-create-emp">&times;</button>
+      </div>
+      <form id="form-create-emp" class="modal-body">
+        <div class="form-group">
+          <label for="emp-in-code" class="field-label">Employee Code * (e.g. EMP1001)</label>
+          <input type="text" id="emp-in-code" class="form-input" placeholder="EMP0001" pattern="^EMP\d{4,6}$" required>
+          <span class="field-hint">Pattern ^EMP\d{4,6}$ (Unique index enforced)</span>
+        </div>
+        <div class="form-group">
+          <label for="emp-in-name" class="field-label">Full Name *</label>
+          <input type="text" id="emp-in-name" class="form-input" placeholder="e.g. Jane Doe" maxlength="100" required>
+        </div>
+        <div class="form-group">
+          <label for="emp-in-email" class="field-label">Email Address *</label>
+          <input type="email" id="emp-in-email" class="form-input" placeholder="jane@example.com" maxlength="120" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="emp-in-dept" class="field-label">Department *</label>
+            <input type="text" id="emp-in-dept" class="form-input" placeholder="Engineering" maxlength="50" required>
+          </div>
+          <div class="form-group flex-1">
+            <label for="emp-in-joined" class="field-label">Joined Date *</label>
+            <input type="date" id="emp-in-joined" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="emp-in-start" class="field-label">Shift Start (IST) *</label>
+            <input type="time" id="emp-in-start" class="form-input" value="09:30" required>
+          </div>
+          <div class="form-group flex-1">
+            <label for="emp-in-end" class="field-label">Shift End (IST) *</label>
+            <input type="time" id="emp-in-end" class="form-input" value="18:30" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-create-emp">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-emp">Create Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: EMPLOYEE MONTHLY BREAKDOWN -->
+  <div class="modal-overlay hidden" id="modal-emp-monthly">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="monthly-modal-title">Employee Monthly Analytics</h3>
+          <p class="modal-subtitle" id="monthly-modal-sub">Breakdown for EMP0001</p>
+        </div>
+        <button class="modal-close" id="btn-close-emp-monthly">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="filter-group mb-4">
+          <label for="emp-monthly-picker" class="field-label">Month</label>
+          <input type="month" id="emp-monthly-picker" value="2026-07" class="form-input form-input-sm">
+          <button id="btn-reload-monthly" class="btn btn-secondary btn-sm">Update</button>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Working Days (R7)</span>
+            <span class="kpi-value" id="m-stat-working">--</span>
+            <span class="kpi-foot">Adjusted from join date</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Present Days (R6)</span>
+            <span class="kpi-value text-emerald" id="m-stat-present">--</span>
+            <span class="kpi-foot">Mon-Fri workdays</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Attendance Rate (%)</span>
+            <span class="kpi-value text-cyan" id="m-stat-pct">--%</span>
+            <span class="kpi-foot">present / working days</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Late Days (R2)</span>
+            <span class="kpi-value text-rose" id="m-stat-late">--</span>
+            <span class="kpi-foot" id="m-stat-latemins">0 total late mins</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Total Overtime (R3)</span>
+            <span class="kpi-value text-violet" id="m-stat-ot">--</span>
+            <span class="kpi-foot">Minutes logged</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Leave Days</span>
+            <span class="kpi-value text-amber" id="m-stat-leave">--</span>
+            <span class="kpi-foot">Approved leave logs</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-close-monthly-action">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: REGULARIZE ATTENDANCE -->
+  <div class="modal-overlay hidden" id="modal-regularize">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Regularize Attendance Record</h3>
+          <p class="modal-subtitle" id="reg-record-target">EMP0001 &bull; Date: 2026-07-06</p>
+        </div>
+        <button class="modal-close" id="btn-close-regularize">&times;</button>
+      </div>
+      <form id="form-regularize" class="modal-body">
+        <input type="hidden" id="reg-emp-code">
+        <input type="hidden" id="reg-date">
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="reg-status" class="field-label">Status Mode</label>
+            <select id="reg-status" class="form-input">
+              <option value="PRESENT">PRESENT</option>
+              <option value="WFH">WFH</option>
+              <option value="ON_DUTY">ON_DUTY</option>
+              <option value="ABSENT">ABSENT</option>
+              <option value="LEAVE">LEAVE</option>
+            </select>
+          </div>
+          <div class="form-group flex-1">
+            <label for="reg-by" class="field-label">Regularized By * (Manager Name)</label>
+            <input type="text" id="reg-by" class="form-input" placeholder="e.g. HR Admin" maxlength="50" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="reg-punchin-dt" class="field-label">Adjust Punch In (IST Local)</label>
+            <input type="datetime-local" id="reg-punchin-dt" class="form-input">
+          </div>
+          <div class="form-group flex-1">
+            <label for="reg-punchout-dt" class="field-label">Adjust Punch Out (IST Local)</label>
+            <input type="datetime-local" id="reg-punchout-dt" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-reason" class="field-label">Audit Correction Reason * (Min 5 chars)</label>
+          <textarea id="reg-reason" class="form-input" rows="2" placeholder="e.g. Biometric scanner offline at gate 2." minlength="5" maxlength="200" required></textarea>
+        </div>
+
+        <!-- Prior audit trail history -->
+        <div class="audit-history-section">
+          <h4 class="audit-history-title">Prior Audit Trail History</h4>
+          <div id="reg-audit-history-list" class="audit-list">
+            <div class="text-muted text-sm">No prior manual regularizations for this record.</div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-reg">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-reg">Save Regularization (PATCH)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
