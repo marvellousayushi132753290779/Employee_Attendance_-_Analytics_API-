@@ -17,3 +17,7 @@ __pycache__/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Confidential documents
+PROBLEM_STATEMENT.docx
+*.docx
